@@ -1,0 +1,44 @@
+/* src/components/AdminList.css */
+.admin-list-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .list-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.3s;
+  }
+  
+  .list-item:hover {
+    background-color: #fafafa;
+  }
+  
+  .product-description {
+    font-size: 13px;
+    color: #555;
+  }
+  
+  .list-item .ant-list-item-meta-title {
+    margin-bottom: 4px;
+  }
+  
+  .list-item .ant-list-item-meta-description {
+    margin-top: 0;
+  }
+  
+  .action-buttons .ant-btn {
+    margin-left: 8px;
+  }
+  
+  @media (max-width: 576px) {
+    .admin-list-container {
+      padding: 10px;
+    }
+  
+    .product-description {
+      font-size: 12px;
+    }
+  }
+  

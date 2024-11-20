@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.ecommerce.mapper.ProductMapper">
+
+    <!-- Result Map -->
+    <resultMap id="ProductResultMap" type="com.example.ecommerce.model.Product">
+        <id property="productId" column="product_id"/>
+        <result property="title" column="title"/>
+        <result property="description" column="description"/>
+        <result property="price" column="price"/>
+        <result property="stockQuantity" column="stock_quantity"/>
+        <result property="imageUrl" column="image_url"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="userId" column="user_id"/>
+        <result property="author" column="author"/>
+    </resultMap>
+
+    <!-- Insert -->
+    <insert id="insertProduct" parameterType="com.example.ecommerce.model.Product">
+        <!-- 시퀀스 값을 가져와 productId에 설정 -->
+        <selectKey keyProperty="productId" resultType="long" order="BEFORE">
+            SELECT products_seq.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO PRODUCTS (product_id, title, description, price, stock_quantity, image_url, created_at, user_id, author,genre)
+        VALUES (#{productId}, #{title}, #{description}, #{price}, #{stockQuantity}, #{imageUrl}, SYSDATE, #{userId},#{author},#{genre})
+    </insert>
+
+    <!-- Select by ID -->
+    <select id="selectProductById" parameterType="long" resultMap="ProductResultMap">
+        SELECT product_id, title, description, price, stock_quantity, image_url, created_at, user_id, author,genre
+        FROM PRODUCTS
+        WHERE product_id = #{productId}
+    </select>
+
+    <!-- Select All -->
+    <select id="selectAllProducts" resultMap="ProductResultMap">
+        SELECT product_id, title, description, price, stock_quantity, image_url, created_at, user_id, author,genre
+        FROM PRODUCTS
+    </select>
+
+    <!-- Select Products by User ID -->
+    <select id="selectProductsByUserId" parameterType="long" resultMap="ProductResultMap">
+        SELECT product_id, title, description, price, stock_quantity, image_url, created_at, user_id, author,genre
+        FROM PRODUCTS
+        WHERE user_id = #{userId}
+    </select>
+
+    <!-- Update -->
+    <update id="updateProduct" parameterType="com.example.ecommerce.model.Product">
+        UPDATE PRODUCTS
+        SET title = #{title},
+            description = #{description},
+            price = #{price},
+            stock_quantity = #{stockQuantity},
+            image_url = #{imageUrl},
+            user_id = #{userId},
+            author = #{author},
+            genre = #{genre}
+        WHERE product_id = #{productId}
+    </update>
+
+    <!-- Delete -->
+    <delete id="deleteProduct" parameterType="long">
+        DELETE FROM PRODUCTS
+        WHERE product_id = #{productId}
+    </delete>
+
+</mapper>

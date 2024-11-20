@@ -1,0 +1,24 @@
+.inner-content{
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x)* .5);
+    padding-left: calc(var(--bs-gutter-x)* .5);
+    margin-top: var(--bs-gutter-y);
+}
+
+.slick-slide{
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+}
+
+.product-item-img{
+    position: relative;
+    background: #EFEEE8;
+    border: 1px solid #EAE8DF;
+    padding: 15%;
+    cursor: pointer;
+    width: 100%;
+}

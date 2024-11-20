@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.ecommerce.mapper.UserMapper">
+
+    <!-- Result Map -->
+    <resultMap id="UserWithProductsResultMap" type="com.example.ecommerce.model.User">
+        <id property="userId" column="user_id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="balance" column="balance"/>
+        <result property="role" column="role"/>
+        <result property="createdAt" column="created_at"/>
+
+        <!-- products 리스트 매핑 -->
+        <collection property="products" ofType="com.example.ecommerce.model.Product">
+            <id property="productId" column="product_id"/>
+            <result property="title" column="title"/>
+            <result property="description" column="description"/>
+            <result property="price" column="price"/>
+            <result property="stockQuantity" column="stock_quantity"/>
+            <result property="imageUrl" column="image_url"/>
+            <result property="genre" column="genre"/>
+            <result property="createdAt" column="created_at"/>
+            <result property="userId" column="user_id"/>
+        </collection>
+    </resultMap>
+
+    <!-- Insert -->
+    <insert id="insertUser" parameterType="com.example.ecommerce.model.User">
+        <!-- 시퀀스 값을 가져와 userId에 설정 -->
+        <selectKey keyProperty="userId" resultType="long" order="BEFORE">
+            SELECT users_seq.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO Users (user_id, username, password, email, balance, role, created_at)
+        VALUES (#{userId}, #{username}, #{password}, #{email}, #{balance}, #{role}, SYSDATE)
+    </insert>
+
+    <!-- Select by Username -->
+    <select id="selectUserByUsername" parameterType="string" resultMap="UserWithProductsResultMap">
+        SELECT u.user_id, u.username, u.password, u.email, u.balance, u.role, u.created_at,
+               p.product_id, p.title, p.description, p.price, p.stock_quantity, p.image_url, p.created_at, p.author,p.genre
+        FROM Users u
+        LEFT JOIN PRODUCTS p ON u.user_id = p.user_id
+        WHERE u.username = #{username}
+    </select>
+
+    <!-- Select by ID -->
+    <select id="selectUserById" parameterType="long" resultMap="UserWithProductsResultMap">
+        SELECT u.user_id, u.username, u.password, u.email, u.balance, u.role, u.created_at,
+               p.product_id, p.title, p.description, p.price, p.stock_quantity, p.image_url, p.created_at, p.author,p.genre
+        FROM Users u
+        LEFT JOIN PRODUCTS p ON u.user_id = p.user_id
+        WHERE u.user_id = #{userId}
+    </select>
+
+    <!-- Select All -->
+    <select id="selectAllUsers" resultMap="UserWithProductsResultMap">
+        SELECT u.user_id, u.username, u.password, u.email, u.balance, u.role, u.created_at,
+               p.product_id, p.title, p.description, p.price, p.stock_quantity, p.image_url, p.created_at, p.author,p.genre
+        FROM Users u
+        LEFT JOIN PRODUCTS p ON u.user_id = p.user_id
+    </select>
+
+    <!-- Update -->
+    <update id="updateUser" parameterType="com.example.ecommerce.model.User">
+        UPDATE Users
+        SET username = #{username},
+            password = #{password},
+            email = #{email},
+            balance = #{balance},
+            role = #{role}
+        WHERE user_id = #{userId}
+    </update>
+
+    <!-- Delete -->
+    <delete id="deleteUser" parameterType="long">
+        DELETE FROM Users
+        WHERE user_id = #{userId}
+    </delete>
+
+</mapper>
