@@ -24,7 +24,7 @@ const SignUp = () => {
           'Content-Type': 'application/json',
         },
       });
-      message.success(response.data);
+      message.success("성공적으로 회원가입 되었습니다.");
     } catch (error) {
       console.error('회원가입 실패:', error);
       message.error('회원가입에 실패했습니다.');

@@ -74,7 +74,7 @@ const Popularbooks = ({ addShopData }) => {
                         );
                       })()
                     ) : (
-                      <h1>No products available.</h1>
+                      <h1>책이 없습니다.</h1>
                     )}
 
 

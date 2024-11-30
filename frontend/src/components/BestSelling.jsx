@@ -32,7 +32,7 @@ const BestSelling = () => {
 											<p>{product.description}</p>
 											<div className="item-price">{product.price}</div>
 											<div className="btn-wrap">
-												<a href="#" className="btn-accent-arrow">shop it now <i className="icon icon-ns-arrow-right"></i></a>
+												<a href="/books" className="btn-accent-arrow">shop it now <i className="icon icon-ns-arrow-right"></i></a>
 											</div>
 										</div>
 									</div>

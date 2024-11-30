@@ -1,6 +1,6 @@
 // src/components/Header.jsx
 
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import "./Header.css";
 import { Button, TextField, Box, Popover, IconButton, Typography} from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
@@ -112,10 +112,9 @@ const Header = () => {
             <div className="col-md-6">
               <div className="social-links">
                 <ul>
-                  <li><a href="#"><i className="icon icon-facebook"></i></a></li>
-                  <li><a href="#"><i className="icon icon-twitter"></i></a></li>
-                  <li><a href="#"><i className="icon icon-youtube-play"></i></a></li>
-                  <li><a href="#"><i className="icon icon-behance-square"></i></a></li>
+                  <li><a href="https://www.facebook.com"><i className="icon icon-facebook"></i></a></li>
+                  <li><a href="https://www.x.com"><i className="icon icon-twitter"></i></a></li>
+                  <li><a href="https://www.youtube.com"><i className="icon icon-youtube-play"></i></a></li>
                 </ul>
               </div>
             </div>
@@ -124,10 +123,10 @@ const Header = () => {
               <div className="right-element">
 
      
-        
-              <Link to="/SignUp" style={{marginRight:'30px'}}>
+              {!isLoggedIn && <Link to="/SignUp" style={{marginRight:'30px'}}>
               회원가입
-              </Link>
+              </Link>}
+            
     
    
               {!isLoggedIn ? (
