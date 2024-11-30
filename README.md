@@ -16,25 +16,35 @@ Spring Security와 JWT 토큰 인증 방식을 통해 권한에 따른 접근 �
 ✅ 쇼핑 카트 기능
 
 책 이미지를 클릭하여 쇼핑 카트에 담을 수 있으며, 카트 내용은 세션 스토리지에 저장되어 쇼핑 페이지에서 구매할 수 있습니다.
+
 🛠 사용 기술
 프론트엔드
 React
 기존에 jQuery로 작성된 오픈소스 부트스트랩을 React로 마이그레이션하였습니다.
+
 React Hooks
 useEffect, useState, useContext 등 다양한 훅을 활용하여 상태와 생명주기를 효율적으로 관리하였습니다.
+
 Ant Design
 UI 디자인에 Ant Design 라이브러리를 사용하여 일관된 디자인과 반응형 웹을 구현하였습니다.
+
 Axios
 RESTful API 통신을 위해 axios를 사용하였습니다.
+
 백엔드
+
 Spring Framework
 백엔드 로직과 REST API를 구축하였습니다.
+
 OracleDB
 데이터베이스로 OracleDB를 사용하였습니다.
+
 MyBatis
 ORM 프레임워크로 MyBatis를 활용하였습니다.
+
 Spring Security
 JWT 토큰을 통한 인증 방식으로 보안을 강화하였습니다.
+
 🚀 프로젝트 특징
 React로의 마이그레이션
 
